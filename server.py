@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
+port = int(os.environ.get("PORT", 5000))
 CORS(app)
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -25,4 +26,4 @@ def message():
     return jsonify(response.text)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=9999)
+    app.run(host="0.0.0.0", port=port)
